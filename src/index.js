@@ -38,7 +38,19 @@ const MORSE_TABLE = {
 };
 
 function decode(expr) {
-    // write your solution here
+
+let arrSymbolBin = [];
+let arrSymbolMorse = [];
+let res = '';
+
+for (i=0; i < expr.length; i+=10) {
+    arrSymbolBin.push(expr.slice(i, i + 10))
+}
+  arrSymbolBin.map(symbol => arrSymbolMorse.push(symbol.replace(/10/g,'.').replace(/11/g,'-').replace(/00/g,'')) );
+
+  arrSymbolMorse.map(symbol => symbol == '**********' ? res += ' ' : res += MORSE_TABLE[symbol]);
+
+  return res;
 }
 
 module.exports = {
